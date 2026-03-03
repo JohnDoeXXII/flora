@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bt4dnvt8prct5"]
+
+[node name="Mainmenu" type="Node2D"]
+
+[node name="MenuButton" type="MenuButton" parent="."]
+offset_left = 257.0
+offset_top = 216.0
+offset_right = 977.0
+offset_bottom = 453.0
+text = "FLORA"
