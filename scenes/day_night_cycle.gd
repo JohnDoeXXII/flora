@@ -43,10 +43,29 @@ func skip_to_phase(target: DayPhase.Phase) -> void:
 	var start_idx: int = PHASE_ORDER.find(current_phase)
 	var target_idx: int = PHASE_ORDER.find(target)
 	var steps: int = (target_idx - start_idx + PHASE_ORDER.size()) % PHASE_ORDER.size()
+	if steps == 0:
+		steps = PHASE_ORDER.size()
 	for i: int in range(1, steps + 1):
 		var phase: DayPhase.Phase = PHASE_ORDER[(start_idx + i) % PHASE_ORDER.size()]
 		current_phase = phase
 		time_changed.emit(phase)
+	_time = PHASE_START_TIME[target]
+
+
+## Like [method skip_to_phase] but spreads the phase emissions evenly over
+## [param duration] seconds, so callers can await the full animation.
+func skip_to_phase_animated(target: DayPhase.Phase, duration: float) -> void:
+	var start_idx: int = PHASE_ORDER.find(current_phase)
+	var target_idx: int = PHASE_ORDER.find(target)
+	var steps: int = (target_idx - start_idx + PHASE_ORDER.size()) % PHASE_ORDER.size()
+	if steps == 0:
+		steps = PHASE_ORDER.size()
+	var interval: float = duration / steps
+	for i: int in range(1, steps + 1):
+		var phase: DayPhase.Phase = PHASE_ORDER[(start_idx + i) % PHASE_ORDER.size()]
+		current_phase = phase
+		time_changed.emit(phase)
+		await get_tree().create_timer(interval).timeout
 	_time = PHASE_START_TIME[target]
 
 
