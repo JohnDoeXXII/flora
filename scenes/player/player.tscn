@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn4xw7bvqp2r8"]
+[gd_scene load_steps=17 format=3 uid="uid://cn4xw7bvqp2r8"]
 
 [ext_resource type="Script" uid="uid://7tomjuwcei43" path="res://scenes/player/player.gd" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://dn6v6hmbjonmk" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Units/Purple Units/Archer/Archer_Idle.png" id="2_idle"]
@@ -91,6 +91,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 44.0114
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_player")
 
@@ -99,6 +102,13 @@ shape = SubResource("CapsuleShape2D_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, 24)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
 offset = Vector2(0, -37)
+
+[node name="InteractionZone" type="Area2D" parent="."]
+
+[node name="InteractionShape" type="CollisionShape2D" parent="InteractionZone"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_interaction")

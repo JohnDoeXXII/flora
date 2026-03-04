@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4jwonoc0tfua"]
+
+[ext_resource type="Script" uid="uid://cvob56q6ipucv" path="res://scenes/bed/bed.gd" id="1_bed"]
+
+[sub_resource type="RectangleShape2D" id="InteractionShape"]
+size = Vector2(128, 96)
+
+[sub_resource type="RectangleShape2D" id="BlockerShape"]
+size = Vector2(96, 64)
+
+[node name="Bed" type="Area2D"]
+script = ExtResource("1_bed")
+
+[node name="InteractionCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("InteractionShape")
+
+[node name="Frame" type="Polygon2D" parent="."]
+color = Color(0.55, 0.35, 0.15, 1)
+polygon = PackedVector2Array(-48, 32, 48, 32, 48, -32, -48, -32)
+
+[node name="Mattress" type="Polygon2D" parent="."]
+color = Color(0.9, 0.9, 0.85, 1)
+polygon = PackedVector2Array(-40, 24, 40, 24, 40, -24, -40, -24)
+
+[node name="Pillow" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-32, -12, 0, -12, 0, -22, -32, -22)
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+
+[node name="BlockerCollision" type="CollisionShape2D" parent="Blocker"]
+shape = SubResource("BlockerShape")

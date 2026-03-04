@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://w5n7y61f0rc8"]
+[gd_scene load_steps=17 format=4 uid="uid://w5n7y61f0rc8"]
 
 [ext_resource type="PackedScene" uid="uid://cn4xw7bvqp2r8" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://cqc8crgx1r38p" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Tileset/Tilemap_color1.png" id="2_662u0"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bupx74fsg7r2u" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Decorations/Bushes/Bushe1.png" id="3_dhsp4"]
 [ext_resource type="PackedScene" path="res://scenes/hut/hut.tscn" id="3_hut"]
 [ext_resource type="PackedScene" uid="uid://2531x10dejwb" path="res://scenes/torch/torch.tscn" id="6_b1b42"]
+[ext_resource type="PackedScene" uid="uid://pglmhrme560u" path="res://scenes/crop_plot/crop_plot.tscn" id="7_cropplot"]
+[ext_resource type="Script" uid="uid://byr8kjy8txoe5" path="res://scenes/crop_field/crop_field.gd" id="7_lvsx0"]
+[ext_resource type="Texture2D" uid="uid://6tttqbejrdr1" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Tileset/Tilemap_color4.png" id="8_bduoi"]
+[ext_resource type="Resource" path="res://scenes/crop_data/wheat.tres" id="8_wheat"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1b42"]
 texture = ExtResource("2_662u0")
@@ -798,6 +802,23 @@ sources/1 = SubResource("TileSetAtlasSource_0wbp6")
 [sub_resource type="RectangleShape2D" id="WallGateShape"]
 size = Vector2(64, 192)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lia7k"]
+texture = ExtResource("8_bduoi")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+0:2/0 = 0
+0:1/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ff0t0"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_lia7k")
+
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("2_overworld")
@@ -847,5 +868,15 @@ position = Vector2(1632, 800)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallGate"]
 shape = SubResource("WallGateShape")
+
+[node name="CropField" type="Node2D" parent="."]
+position = Vector2(906, 762)
+script = ExtResource("7_lvsx0")
+crop_data = ExtResource("8_wheat")
+crop_plot_scene = ExtResource("7_cropplot")
+
+[node name="FertileGround" type="TileMapLayer" parent="CropField"]
+tile_map_data = PackedByteArray("AAD9//z/AAAAAAAAAAD9//3/AAAAAAEAAAD9//7/AAAAAAIAAAD+//z/AAABAAAAAAD+//3/AAABAAEAAAD+//7/AAABAAIAAAD///z/AAACAAAAAAD///3/AAACAAEAAAD///7/AAACAAIAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAEAAAAAAP7/AAAAAAIAAAABAPz/AAABAAAAAAABAP3/AAABAAEAAAABAP7/AAABAAIAAAACAPz/AAACAAAAAAACAP3/AAACAAEAAAACAP7/AAACAAIAAAD9////AAAAAAAAAAD9/wAAAAAAAAEAAAD9/wEAAAAAAAIAAAD+////AAABAAAAAAD+/wAAAAABAAEAAAD+/wEAAAABAAIAAAD/////AAACAAAAAAD//wAAAAACAAEAAAD//wEAAAACAAIAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAABAP//AAABAAAAAAABAAAAAAABAAEAAAABAAEAAAABAAIAAAACAP//AAACAAAAAAACAAAAAAACAAEAAAACAAEAAAACAAIAAAA=")
+tile_set = SubResource("TileSet_ff0t0")
 
 [connection signal="body_entered" from="WallGate" to="." method="_on_wall_gate_entered"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CropData" format=3]
+
+[ext_resource type="Script" path="res://scenes/crop_data/crop_data.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Decorations/Bushes/Bushe1.png" id="2_fertile"]
+[ext_resource type="Texture2D" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Decorations/Bushes/Bushe2.png" id="3_seeded"]
+[ext_resource type="Texture2D" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Decorations/Bushes/Bushe3.png" id="4_growing"]
+[ext_resource type="Texture2D" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Decorations/Bushes/Bushe4.png" id="5_harvestable"]
+
+[resource]
+script = ExtResource("1_script")
+days_to_mature = 3
+harvest_gold = 10
+sprite_fertile = ExtResource("2_fertile")
+sprite_seeded = ExtResource("3_seeded")
+sprite_growing = ExtResource("4_growing")
+sprite_harvestable = ExtResource("5_harvestable")

@@ -1,7 +1,8 @@
-[gd_scene format=3]
+[gd_scene load_steps=7 format=3 uid="uid://cpigmq11ljnss"]
 
-[ext_resource type="Script" path="res://scenes/hut_interior/hut_interior.gd" id="1_interior"]
+[ext_resource type="Script" uid="uid://76ql2mo4rec3" path="res://scenes/hut_interior/hut_interior.gd" id="1_interior"]
 [ext_resource type="PackedScene" uid="uid://cn4xw7bvqp2r8" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://d4jwonoc0tfua" path="res://scenes/bed/bed.tscn" id="3_7q0d8"]
 
 [sub_resource type="RectangleShape2D" id="WallH"]
 size = Vector2(640, 32)
@@ -18,7 +19,7 @@ script = ExtResource("1_interior")
 [node name="Floor" type="ColorRect" parent="."]
 offset_right = 640.0
 offset_bottom = 512.0
-color = Color(0.55, 0.40, 0.22, 1)
+color = Color(0.55, 0.4, 0.22, 1)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -57,5 +58,9 @@ position = Vector2(320, 400)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)
+
+[node name="Bed" parent="." instance=ExtResource("3_7q0d8")]
+position = Vector2(136, 102)
+scale = Vector2(2, 2)
 
 [connection signal="body_entered" from="ExitArea" to="." method="_on_exit_entered"]
