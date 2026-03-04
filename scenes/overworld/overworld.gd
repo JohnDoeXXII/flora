@@ -18,15 +18,6 @@ func _ready() -> void:
 
 	DayNightCycle.time_changed.connect(_on_time_changed)
 	_on_time_changed(DayNightCycle.current_phase)
-	_spawn_torches()
-
-
-func _spawn_torches() -> void:
-	var torch_scene := load("res://scenes/torch/torch.tscn") as PackedScene
-	for marker: Marker2D in torch_markers.get_children():
-		var torch: Node2D = torch_scene.instantiate()
-		torch.position = marker.position
-		add_child(torch)
 
 
 func _on_time_changed(phase: DayPhase.Phase) -> void:
