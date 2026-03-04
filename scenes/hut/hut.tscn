@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/hut/hut.gd" id="1_hut"]
+
+[sub_resource type="RectangleShape2D" id="WallLeft"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="WallRight"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="WallTop"]
+size = Vector2(32, 12)
+
+[sub_resource type="RectangleShape2D" id="DoorTrigger"]
+size = Vector2(28, 16)
+
+[node name="Hut" type="StaticBody2D"]
+script = ExtResource("1_hut")
+
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-48, 0, 48, 0, 48, -64, -48, -64)
+color = Color(0.82, 0.72, 0.54, 1)
+
+[node name="Roof" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-56, -64, 56, -64, 0, -112)
+color = Color(0.45, 0.25, 0.08, 1)
+
+[node name="Door" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-16, 0, 16, 0, 16, -36, 11, -47, 0, -52, -11, -47, -16, -36)
+color = Color(0.12, 0.08, 0.04, 1)
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="."]
+position = Vector2(-32, -32)
+shape = SubResource("WallLeft")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="."]
+position = Vector2(32, -32)
+shape = SubResource("WallRight")
+
+[node name="CollisionTop" type="CollisionShape2D" parent="."]
+position = Vector2(0, -58)
+shape = SubResource("WallTop")
+
+[node name="DoorArea" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
+shape = SubResource("DoorTrigger")
+
+[connection signal="body_entered" from="DoorArea" to="." method="_on_door_entered"]

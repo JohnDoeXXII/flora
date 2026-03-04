@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="48" viewBox="0 0 32 48">
+  <!-- Head -->
+  <circle cx="16" cy="8" r="7" fill="#F5CBA7" stroke="#C49A6C" stroke-width="1"/>
+  <!-- Body -->
+  <rect x="9" y="16" width="14" height="16" rx="3" fill="#5B8CCC" stroke="#3A6BAA" stroke-width="1"/>
+  <!-- Left arm -->
+  <rect x="2" y="17" width="6" height="4" rx="2" fill="#F5CBA7" stroke="#C49A6C" stroke-width="1"/>
+  <!-- Right arm -->
+  <rect x="24" y="17" width="6" height="4" rx="2" fill="#F5CBA7" stroke="#C49A6C" stroke-width="1"/>
+  <!-- Left leg -->
+  <rect x="9" y="33" width="6" height="12" rx="2" fill="#3E4A61" stroke="#2A3347" stroke-width="1"/>
+  <!-- Right leg -->
+  <rect x="17" y="33" width="6" height="12" rx="2" fill="#3E4A61" stroke="#2A3347" stroke-width="1"/>
+</svg>

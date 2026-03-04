@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://w5n7y61f0rc8"]
+
+[ext_resource type="PackedScene" uid="uid://cn4xw7bvqp2r8" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" uid="uid://dciry103m3ln5" path="res://scenes/overworld/overworld.gd" id="2_overworld"]
+[ext_resource type="PackedScene" path="res://scenes/hut/hut.tscn" id="3_hut"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+colors = PackedColorArray(0, 0.27, 0, 1, 0.13, 0.55, 0.13, 1)
+
+[sub_resource type="GradientTexture2D" id="GradTex_bg"]
+gradient = SubResource("Gradient_bg")
+width = 1280
+height = 1280
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="RectangleShape2D" id="Shape_top"]
+size = Vector2(640, 16)
+
+[sub_resource type="RectangleShape2D" id="Shape_bottom"]
+size = Vector2(640, 16)
+
+[sub_resource type="RectangleShape2D" id="Shape_left"]
+size = Vector2(16, 640)
+
+[sub_resource type="RectangleShape2D" id="Shape_right"]
+size = Vector2(16, 640)
+
+[node name="Overworld" type="Node2D"]
+script = ExtResource("2_overworld")
+
+[node name="VoidBackground" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="VoidRect" type="ColorRect" parent="VoidBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.04, 0.06, 0.02, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 640.0
+texture = SubResource("GradTex_bg")
+expand_mode = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(320, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+shape = SubResource("Shape_top")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(320, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+shape = SubResource("Shape_bottom")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-8, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+shape = SubResource("Shape_left")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(648, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+shape = SubResource("Shape_right")
+
+[node name="Border" type="Node2D" parent="."]
+
+[node name="TopBorder" type="ColorRect" parent="Border"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 656.0
+color = Color(0.15, 0.1, 0.04, 1)
+
+[node name="BottomBorder" type="ColorRect" parent="Border"]
+offset_left = -16.0
+offset_top = 640.0
+offset_right = 656.0
+offset_bottom = 656.0
+color = Color(0.15, 0.1, 0.04, 1)
+
+[node name="LeftBorder" type="ColorRect" parent="Border"]
+offset_left = -16.0
+offset_bottom = 640.0
+color = Color(0.15, 0.1, 0.04, 1)
+
+[node name="RightBorder" type="ColorRect" parent="Border"]
+offset_left = 640.0
+offset_right = 656.0
+offset_bottom = 640.0
+color = Color(0.15, 0.1, 0.04, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(320, 320)
+
+[node name="Hut" parent="." instance=ExtResource("3_hut")]
+position = Vector2(800, 480)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.5, 1.5)
+limit_left = -16
+limit_top = -16
+limit_right = 656
+limit_bottom = 656
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0

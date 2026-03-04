@@ -15,6 +15,11 @@ run/main_scene="uid://bt4dnvt8prct5"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DayNightCycle="*res://scenes/day_night_cycle.gd"
+TransitionData="*res://scenes/transition_data.gd"
+
 [dotnet]
 
 project/assembly_name="flora"
