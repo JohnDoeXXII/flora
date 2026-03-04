@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6h5r7bbyyr66"]
+
+[ext_resource type="Script" uid="uid://s0diivxuki6m" path="res://scenes/flappy_cave/bird.gd" id="1_bird_script"]
+[ext_resource type="Texture2D" uid="uid://bebabaki0rnqg" path="res://assets/flappy_flora_2.png" id="2_v52bd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v52bd"]
+radius = 28.0
+height = 58.0
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_bird_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_v52bd")
+
+[node name="Bird" type="Sprite2D" parent="."]
+scale = Vector2(-0.1, 0.1)
+texture = ExtResource("2_v52bd")

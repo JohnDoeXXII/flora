@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cds78uusjj0ld"]
+
+[ext_resource type="Script" uid="uid://7qsnsfl6cvyf" path="res://scenes/flappy_cave/obstacle_pair.gd" id="1_obstacle_script"]
+
+[sub_resource type="RectangleShape2D" id="BoltCollision"]
+size = Vector2(80, 1910)
+
+[sub_resource type="RectangleShape2D" id="TreeCollision"]
+size = Vector2(100, 1910)
+
+[node name="ObstaclePair" type="Node2D"]
+script = ExtResource("1_obstacle_script")
+
+[node name="LightningBolt" type="StaticBody2D" parent="."]
+
+[node name="Visual" type="Polygon2D" parent="LightningBolt"]
+color = Color(1, 0.88, 0.1, 1)
+polygon = PackedVector2Array(-40, -2000, 40, -2000, 40, -130, 20, -110, 35, -100, 10, -90, -10, -105, -35, -95, -20, -115, -40, -130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightningBolt"]
+position = Vector2(0, -1045)
+shape = SubResource("BoltCollision")
+
+[node name="OakTree" type="StaticBody2D" parent="."]
+
+[node name="Crown" type="Polygon2D" parent="OakTree"]
+color = Color(0.15, 0.45, 0.1, 1)
+polygon = PackedVector2Array(-50, 210, -60, 150, -40, 110, 0, 90, 40, 110, 60, 150, 50, 210)
+
+[node name="Trunk" type="Polygon2D" parent="OakTree"]
+color = Color(0.4, 0.25, 0.1, 1)
+polygon = PackedVector2Array(-15, 200, 15, 200, 15, 2000, -15, 2000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OakTree"]
+position = Vector2(0, 1045)
+shape = SubResource("TreeCollision")

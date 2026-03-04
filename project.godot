@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="flora"
-run/main_scene="uid://w5n7y61f0rc8"
+run/main_scene="uid://bt4dnvt8prct5"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 DayNightCycle="*res://scenes/day_night_cycle.gd"
 TransitionData="*res://scenes/transition_data.gd"
+Inventory="*res://autoloads/inventory.gd"
+HUD="*res://autoloads/hud.gd"
 
 [dotnet]
 

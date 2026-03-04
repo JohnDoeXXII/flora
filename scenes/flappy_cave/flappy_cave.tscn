@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://rlaw5w1xqgji"]
+
+[ext_resource type="PackedScene" uid="uid://c6h5r7bbyyr66" path="res://scenes/flappy_cave/bird.tscn" id="1_bird"]
+[ext_resource type="Script" uid="uid://bgel3365lloci" path="res://scenes/flappy_cave/flappy_cave.gd" id="2_script"]
+
+[sub_resource type="RectangleShape2D" id="TopWallShape"]
+size = Vector2(2400, 40)
+
+[sub_resource type="RectangleShape2D" id="BottomWallShape"]
+size = Vector2(2400, 40)
+
+[node name="FlappyCave" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="VoidBackground" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BgRect" type="ColorRect" parent="VoidBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.08, 0.06, 1)
+
+[node name="TopBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBoundary"]
+shape = SubResource("TopWallShape")
+
+[node name="BottomBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
+shape = SubResource("BottomWallShape")
+
+[node name="Bird" parent="." instance=ExtResource("1_bird")]
+
+[node name="ObstacleContainer" type="Node2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.2
+
+[node name="SceneHUD" type="CanvasLayer" parent="."]
+
+[node name="TimeLabel" type="Label" parent="SceneHUD"]
+offset_left = 16.0
+offset_top = 48.0
+text = "Time: 0.0s"
+
+[node name="CountdownLabel" type="Label" parent="SceneHUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

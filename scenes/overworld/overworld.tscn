@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://w5n7y61f0rc8"]
+[gd_scene load_steps=11 format=4 uid="uid://w5n7y61f0rc8"]
 
 [ext_resource type="PackedScene" uid="uid://cn4xw7bvqp2r8" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://cqc8crgx1r38p" path="res://assets/tiny_swords_free/Tiny Swords (Free Pack)/Terrain/Tileset/Tilemap_color1.png" id="2_662u0"]
@@ -795,6 +795,9 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_b1b42")
 sources/1 = SubResource("TileSetAtlasSource_0wbp6")
 
+[sub_resource type="RectangleShape2D" id="WallGateShape"]
+size = Vector2(64, 192)
+
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("2_overworld")
@@ -823,11 +826,10 @@ position = Vector2(-961, -949)
 position = Vector2(451, 503)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.5, 1.5)
 limit_left = -16
 limit_top = -16
-limit_right = 1616
-limit_bottom = 1616
+limit_right = 1618
+limit_bottom = 1618
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
@@ -839,3 +841,11 @@ position = Vector2(449, 272)
 
 [node name="Torch2" parent="." instance=ExtResource("6_b1b42")]
 position = Vector2(204, 266)
+
+[node name="WallGate" type="Area2D" parent="."]
+position = Vector2(1632, 800)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallGate"]
+shape = SubResource("WallGateShape")
+
+[connection signal="body_entered" from="WallGate" to="." method="_on_wall_gate_entered"]
