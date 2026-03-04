@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgu7m7k1ocfba"
-path="res://.godot/imported/ai_slop_concept_art.png-7ce46422ffcec62753e20317295f5e32.ctex"
+uid="uid://byetmcmtmj55y"
+path="res://.godot/imported/ai_slop_earth_theme_mg.png-98cf82f1c37e9a953c7c29d56d2a2f34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://concepts/ai_slop_concept_art.png"
-dest_files=["res://.godot/imported/ai_slop_concept_art.png-7ce46422ffcec62753e20317295f5e32.ctex"]
+source_file="res://concepts/ai_slop_earth_theme_mg.png"
+dest_files=["res://.godot/imported/ai_slop_earth_theme_mg.png-98cf82f1c37e9a953c7c29d56d2a2f34.ctex"]
 
 [params]
 

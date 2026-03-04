@@ -1,0 +1,2 @@
+# Animate/Freeze player on sleep
+## Currently crashes game when player exits
