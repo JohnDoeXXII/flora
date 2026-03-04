@@ -3,46 +3,46 @@
 [ext_resource type="Script" path="res://scenes/hut/hut.gd" id="1_hut"]
 
 [sub_resource type="RectangleShape2D" id="WallLeft"]
-size = Vector2(32, 64)
+size = Vector2(64, 128)
 
 [sub_resource type="RectangleShape2D" id="WallRight"]
-size = Vector2(32, 64)
+size = Vector2(64, 128)
 
 [sub_resource type="RectangleShape2D" id="WallTop"]
-size = Vector2(32, 12)
+size = Vector2(64, 24)
 
 [sub_resource type="RectangleShape2D" id="DoorTrigger"]
-size = Vector2(28, 16)
+size = Vector2(56, 32)
 
 [node name="Hut" type="StaticBody2D"]
 script = ExtResource("1_hut")
 
 [node name="Body" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-48, 0, 48, 0, 48, -64, -48, -64)
+polygon = PackedVector2Array(-96, 0, 96, 0, 96, -128, -96, -128)
 color = Color(0.82, 0.72, 0.54, 1)
 
 [node name="Roof" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-56, -64, 56, -64, 0, -112)
+polygon = PackedVector2Array(-112, -128, 112, -128, 0, -224)
 color = Color(0.45, 0.25, 0.08, 1)
 
 [node name="Door" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-16, 0, 16, 0, 16, -36, 11, -47, 0, -52, -11, -47, -16, -36)
+polygon = PackedVector2Array(-32, 0, 32, 0, 32, -72, 22, -94, 0, -104, -22, -94, -32, -72)
 color = Color(0.12, 0.08, 0.04, 1)
 
 [node name="CollisionLeft" type="CollisionShape2D" parent="."]
-position = Vector2(-32, -32)
+position = Vector2(-64, -64)
 shape = SubResource("WallLeft")
 
 [node name="CollisionRight" type="CollisionShape2D" parent="."]
-position = Vector2(32, -32)
+position = Vector2(64, -64)
 shape = SubResource("WallRight")
 
 [node name="CollisionTop" type="CollisionShape2D" parent="."]
-position = Vector2(0, -58)
+position = Vector2(0, -116)
 shape = SubResource("WallTop")
 
 [node name="DoorArea" type="Area2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
 shape = SubResource("DoorTrigger")
