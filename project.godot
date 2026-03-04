@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="flora"
-run/main_scene="uid://bt4dnvt8prct5"
+run/main_scene="res://scenes/hut_interior/hut_interior.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

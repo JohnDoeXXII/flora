@@ -1,19 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://w5n7y61f0rc8"]
+[gd_scene load_steps=9 format=3 uid="uid://w5n7y61f0rc8"]
 
 [ext_resource type="PackedScene" uid="uid://cn4xw7bvqp2r8" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Script" uid="uid://dciry103m3ln5" path="res://scenes/overworld/overworld.gd" id="2_overworld"]
 [ext_resource type="PackedScene" path="res://scenes/hut/hut.tscn" id="3_hut"]
 
-[sub_resource type="Gradient" id="Gradient_bg"]
-colors = PackedColorArray(0, 0.27, 0, 1, 0.13, 0.55, 0.13, 1)
-
-[sub_resource type="GradientTexture2D" id="GradTex_bg"]
-gradient = SubResource("Gradient_bg")
-width = 1280
-height = 1280
-fill = 1
-fill_from = Vector2(0.5, 0)
-fill_to = Vector2(0.5, 1)
+[sub_resource type="TileSet" id="TileSet_ground"]
+tile_size = Vector2i(64, 64)
 
 [sub_resource type="RectangleShape2D" id="Shape_top"]
 size = Vector2(640, 16)
@@ -39,11 +31,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.04, 0.06, 0.02, 1)
 
-[node name="Background" type="TextureRect" parent="."]
-offset_right = 640.0
-offset_bottom = 640.0
-texture = SubResource("GradTex_bg")
-expand_mode = 1
+[node name="Ground" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_ground")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -98,6 +87,20 @@ offset_left = 640.0
 offset_right = 656.0
 offset_bottom = 640.0
 color = Color(0.15, 0.1, 0.04, 1)
+
+[node name="TorchMarkers" type="Node2D" parent="."]
+
+[node name="Torch0" type="Marker2D" parent="TorchMarkers"]
+position = Vector2(1088, 1088)
+
+[node name="Torch1" type="Marker2D" parent="TorchMarkers"]
+position = Vector2(1088, 1472)
+
+[node name="Torch2" type="Marker2D" parent="TorchMarkers"]
+position = Vector2(1472, 1088)
+
+[node name="Torch3" type="Marker2D" parent="TorchMarkers"]
+position = Vector2(1472, 1472)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(320, 320)
