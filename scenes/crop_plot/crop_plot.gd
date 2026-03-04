@@ -3,10 +3,12 @@ extends Interactable
 
 enum State { FERTILE, SEEDED, GROWING, HARVESTABLE }
 
+signal state_changed(state: int, days_grown: int)
+
 @export var crop_data: CropData
 
 var _state: State = State.FERTILE
-var _days_grown: int = 0
+var _plant: Plant = null
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -29,12 +31,20 @@ func get_prompt() -> String:
 func interact(initiator: Node2D) -> void:
 	match _state:
 		State.FERTILE:
+			_plant = Plant.new(crop_data)
 			_state = State.SEEDED
-			_days_grown = 0
 		State.HARVESTABLE:
-			Inventory.add_gold(crop_data.harvest_gold)
+			Inventory.add_gold(_plant.crop_data.harvest_gold)
+			_plant = null
 			_state = State.FERTILE
-			_days_grown = 0
+	_update_visuals()
+	state_changed.emit(_state, _plant.days_grown if _plant else 0)
+
+
+func restore_state(state: int, days_grown: int) -> void:
+	_state = state as State
+	if _state != State.FERTILE:
+		_plant = Plant.new(crop_data, days_grown)
 	_update_visuals()
 
 
@@ -43,9 +53,10 @@ func _on_time_changed(phase: DayPhase.Phase) -> void:
 		return
 	if _state != State.SEEDED and _state != State.GROWING:
 		return
-	_days_grown += 1
-	_state = State.HARVESTABLE if _days_grown >= crop_data.days_to_mature else State.GROWING
+	_plant.days_grown += 1
+	_state = State.HARVESTABLE if _plant.days_grown >= _plant.crop_data.days_to_mature else State.GROWING
 	_update_visuals()
+	state_changed.emit(_state, _plant.days_grown)
 
 
 func _update_visuals() -> void:
@@ -56,8 +67,8 @@ func _update_visuals() -> void:
 		State.FERTILE:
 			sprite.texture = crop_data.sprite_fertile
 		State.SEEDED:
-			sprite.texture = crop_data.sprite_seeded
+			sprite.texture = _plant.crop_data.sprite_seeded
 		State.GROWING:
-			sprite.texture = crop_data.sprite_growing
+			sprite.texture = _plant.crop_data.sprite_growing
 		State.HARVESTABLE:
-			sprite.texture = crop_data.sprite_harvestable
+			sprite.texture = _plant.crop_data.sprite_harvestable

@@ -21,6 +21,7 @@ TransitionData="*res://scenes/transition_data.gd"
 Inventory="*res://autoloads/inventory.gd"
 HUD="*res://autoloads/hud.gd"
 ScreenFade="*res://autoloads/screen_fade.gd"
+FieldRegistry="*res://autoloads/field_registry.gd"
 
 [dotnet]
 
